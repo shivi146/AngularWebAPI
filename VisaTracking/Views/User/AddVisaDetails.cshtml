@@ -1,0 +1,112 @@
+﻿@{
+    ViewBag.Title = "Add Visa Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*@section scripts{
+
+    <script>
+        $(document).ready(function () {
+            $('#Date').datepicker({
+                maxDate: new Date,
+                dateFormat: "dd/mm/yy",
+                changeMonth: true,
+                changeYear: true,
+                yearRange: "-80:+0"
+            }).attr('readonly', 'true')
+        });
+    </script>
+
+}*@
+<script src="~/Scripts/angular.js"></script>
+<script src="~/myApp.js"></script>
+<link href="~/Content/Site.css" rel="stylesheet" />
+<div ng-app="visaApp" ng-controller="visaController">
+    <div class="container" style="width: 600px">
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="header">Add Visa Details</h3>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label for="name" class="col-sm-2 control-label">Visa Stage</label>
+                    <div class="col-sm-10 space">
+                        <select>
+                            <option>Select</option>
+                            <option>SAQA</option>
+                            <option>IITPSA</option>
+                            <option>INDIAPCC</option>
+                            <option>CSWV</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @*<div class="row">
+            <div class="col-md-12">*@
+        <div class="form-group">
+            <label for="Date" class="col-sm-2 control-label">Date</label>
+            @*<div class="col-sm-10 space">*@
+            <input type="date" class="form-control" name="date" placeholder="Enter Date" />
+            @*</div>*@
+        </div>
+        @*</div>
+            </div>*@
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label for="name" class="col-sm-2 control-label">Visa Status</label>
+                    <div class="col-sm-10 space">
+                        <select>
+                            <option>Select</option>
+                            <option>Applied</option>
+                            <option>Recieved</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group space">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <input type="submit" class="btn btn-primary" value="Save" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <br /> <br /> <br />
+    <div class="row">
+        <div class="form-group space">
+            <div class="col-sm-offset-2 col-sm-10">
+                <input type="submit" class="btn btn-primary" value="Fetch Details" ng-click="GetEmpVisaById('12345')" />
+            </div>
+        </div>
+    </div>
+
+    <table style="border:1px solid;width:900px;margin:3px">
+        <thead>
+            <tr>
+                <th>EmpId</th>
+                <th>Emp Name</th>
+                <th>VisaStageCode</th>
+                <th>VisaDate</th>
+                <th>VisaStatus</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="visaAppl in visaAppls">
+                <td>{{visaAppl.EmpId}}</td>
+                <td>{{visaAppl.EmpName}}</td>
+                <td>{{visaAppl.VisaStageCode}}</td>
+                <td>{{visaAppl.VisaDate}}</td>
+                <td>{{visaAppl.VisaStatus}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+</div>

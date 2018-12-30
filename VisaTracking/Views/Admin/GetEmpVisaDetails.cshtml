@@ -1,0 +1,61 @@
+﻿
+@{
+    ViewBag.Title = "GetEmpVisaDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/Scripts/angular.js"></script>
+<script src="~/myApp.js"></script>
+<link href="~/Content/Site.css" rel="stylesheet" />
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+
+<div ng-app="visaApp" ng-controller="visaController">
+    <div class="container" style="width: 600px">
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="header">Employee Visa Details</h3>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="Search">Search</label>
+            <input id="Search" name="Search" type="text" placeholder="Search by Name" ng-model="SearchText" class="form-control" />
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary" ng-click="GetEmpVisaByName(SearchText)">Search</button>
+        </div>
+        <br />
+        <br />
+
+        <div ng-show="isVisible">
+            <table id="tblEmpVisaDetails" style="border:1px solid;width:900px;margin:3px">
+                <thead>
+                    <tr>
+                        <th>EmpId</th>
+                        <th>Emp Name</th>
+                        <th>VisaStageCode</th>
+                        <th>VisaDate</th>
+                        <th>VisaStatus</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="visaAppl in visaAppls">
+                        <td>{{visaAppl.EmpId}}</td>
+                        <td>{{visaAppl.EmpName}}</td>
+                        <td>{{visaAppl.VisaStageCode}}</td>
+                        <td>{{visaAppl.VisaDate}}</td>
+                        <td>{{visaAppl.VisaStatus}}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <br /> <br />
+            <div class="form-group">
+                <input type="button" value="Export into Excel" class="btn btn-primary" ng-click="exportToExcel('#tblEmpVisaDetails')" />
+
+            </div>
+        </div>
+    </div>
+</div>
+
